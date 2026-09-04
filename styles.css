@@ -34,6 +34,37 @@ body {
   line-height: 1.6;
 }
 
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.22;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, var(--bg) 0%, rgba(251, 247, 242, 0.55) 18%, rgba(251, 247, 242, 0.55) 82%, var(--bg) 100%),
+    linear-gradient(155deg, var(--rose) 0%, var(--lavender) 32%, var(--mint) 60%, var(--peach) 100%);
+  background-blend-mode: normal, soft-light;
+  opacity: 0.65;
+}
+
+@media (max-width: 30rem) {
+  .bg-video { display: none; }
+  .bg-overlay {
+    background: linear-gradient(160deg, var(--rose), var(--lavender) 45%, var(--mint) 100%);
+    opacity: 0.35;
+  }
+}
+
 .hero {
   text-align: center;
   padding: 5rem 1.5rem 3.5rem;
