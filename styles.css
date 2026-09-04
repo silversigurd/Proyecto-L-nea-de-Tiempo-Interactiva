@@ -71,14 +71,6 @@ body {
   opacity: 0.65;
 }
 
-@media (max-width: 30rem) {
-  .bg-video { display: none; }
-  .bg-overlay {
-    background: linear-gradient(160deg, var(--rose), var(--lavender) 45%, var(--mint) 100%);
-    opacity: 0.35;
-  }
-}
-
 .hero {
   text-align: center;
   padding: 5rem 1.5rem 3.5rem;
