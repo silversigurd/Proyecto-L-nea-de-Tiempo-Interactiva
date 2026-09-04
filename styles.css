@@ -6,16 +6,22 @@
   --line: #e7ddd6;
 
   --rose: #f6d6dd;
+  --rose-soft: #fdf2f5;
   --rose-ink: #8a3f52;
   --lavender: #e3dbf5;
+  --lavender-soft: #f5f2fb;
   --lavender-ink: #5b4a8a;
   --mint: #d7ede3;
+  --mint-soft: #f1f9f6;
   --mint-ink: #2f6e57;
   --peach: #fbe3cf;
+  --peach-soft: #fdf5ec;
   --peach-ink: #9a5a26;
   --sky: #d9e8f5;
+  --sky-soft: #f1f6fb;
   --sky-ink: #33628a;
   --sand: #f2e6c9;
+  --sand-soft: #faf5e7;
   --sand-ink: #8a6c22;
 
   --serif: 'Times New Roman', Georgia, 'Liberation Serif', serif;
@@ -162,7 +168,7 @@ main {
   display: block;
   width: 100%;
   cursor: pointer;
-  background: var(--card-bg);
+  background: var(--card-tint, var(--card-bg));
   border: 1px solid var(--line);
   border-left: 6px solid var(--dot, var(--rose));
   border-radius: 14px;
@@ -276,12 +282,12 @@ main {
 }
 
 /* color rotation */
-.period.color-1 { --dot: var(--rose); --ink-color: var(--rose-ink); --panel-bg: var(--rose); }
-.period.color-2 { --dot: var(--lavender-ink); --ink-color: var(--lavender-ink); --panel-bg: var(--lavender); }
-.period.color-3 { --dot: var(--mint-ink); --ink-color: var(--mint-ink); --panel-bg: var(--mint); }
-.period.color-4 { --dot: var(--peach-ink); --ink-color: var(--peach-ink); --panel-bg: var(--peach); }
-.period.color-5 { --dot: var(--sky-ink); --ink-color: var(--sky-ink); --panel-bg: var(--sky); }
-.period.color-6 { --dot: var(--sand-ink); --ink-color: var(--sand-ink); --panel-bg: var(--sand); }
+.period.color-1 { --dot: var(--rose); --ink-color: var(--rose-ink); --panel-bg: var(--rose); --card-tint: var(--rose-soft); }
+.period.color-2 { --dot: var(--lavender-ink); --ink-color: var(--lavender-ink); --panel-bg: var(--lavender); --card-tint: var(--lavender-soft); }
+.period.color-3 { --dot: var(--mint-ink); --ink-color: var(--mint-ink); --panel-bg: var(--mint); --card-tint: var(--mint-soft); }
+.period.color-4 { --dot: var(--peach-ink); --ink-color: var(--peach-ink); --panel-bg: var(--peach); --card-tint: var(--peach-soft); }
+.period.color-5 { --dot: var(--sky-ink); --ink-color: var(--sky-ink); --panel-bg: var(--sky); --card-tint: var(--sky-soft); }
+.period.color-6 { --dot: var(--sand-ink); --ink-color: var(--sand-ink); --panel-bg: var(--sand); --card-tint: var(--sand-soft); }
 
 .site-footer {
   text-align: center;
