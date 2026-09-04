@@ -140,18 +140,35 @@ function crearPeriodo(periodo, indice) {
   `;
 
   const toggle = li.querySelector(".period-toggle");
+  const inner = li.querySelector(".period-panel-inner");
   toggle.addEventListener("click", () => {
     const isOpen = li.classList.toggle("open");
     toggle.setAttribute("aria-expanded", String(isOpen));
+    inner.style.maxHeight = isOpen ? inner.scrollHeight + "px" : "0px";
   });
 
-  return li;
+  return { li, inner };
 }
 
 function render() {
   const timeline = document.getElementById("timeline");
+  const panelesAbiertos = [];
   periodos.forEach((periodo, indice) => {
-    timeline.appendChild(crearPeriodo(periodo, indice));
+    const { li, inner } = crearPeriodo(periodo, indice);
+    timeline.appendChild(li);
+    panelesAbiertos.push(inner);
+  });
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      panelesAbiertos.forEach((inner) => {
+        if (inner.closest(".period").classList.contains("open")) {
+          inner.style.maxHeight = inner.scrollHeight + "px";
+        }
+      });
+    }, 150);
   });
 }
 

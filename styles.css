@@ -42,6 +42,10 @@ body {
 
 .bg-video {
   position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -53,6 +57,10 @@ body {
 
 .bg-overlay {
   position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   inset: 0;
   z-index: -1;
   pointer-events: none;
@@ -234,20 +242,15 @@ main {
   transform: rotate(180deg);
 }
 
-.period-panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transition: grid-template-rows 0.4s ease, opacity 0.3s ease;
-}
-
-.period.open .period-panel {
-  grid-template-rows: 1fr;
-  opacity: 1;
-}
-
 .period-panel-inner {
+  max-height: 0;
   overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+.period.open .period-panel-inner {
+  opacity: 1;
 }
 
 .period-detail {
