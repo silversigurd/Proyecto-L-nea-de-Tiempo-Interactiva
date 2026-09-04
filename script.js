@@ -182,20 +182,43 @@ function autorMedia(nombre, obra) {
 
 const MEDIA_CACHE_KEY = "autoresMediaCache_v1";
 
-function leerCacheMedia() {
-  try {
-    return JSON.parse(localStorage.getItem(MEDIA_CACHE_KEY)) || {};
-  } catch (error) {
-    return {};
+let mediaCache = null;
+const solicitudesEnCurso = new Map();
+
+function obtenerCacheMedia() {
+  if (!mediaCache) {
+    try {
+      mediaCache = JSON.parse(localStorage.getItem(MEDIA_CACHE_KEY)) || {};
+    } catch (error) {
+      mediaCache = {};
+    }
   }
+  return mediaCache;
 }
 
-function guardarCacheMedia(cache) {
+function persistirCacheMedia() {
   try {
-    localStorage.setItem(MEDIA_CACHE_KEY, JSON.stringify(cache));
+    localStorage.setItem(MEDIA_CACHE_KEY, JSON.stringify(mediaCache));
   } catch (error) {
     // localStorage puede no estar disponible (modo privado, cuota llena); ignorar.
   }
+}
+
+// Comparte una unica copia en memoria del cache (evita que fetches en paralelo
+// se pisen entre si al leer/escribir localStorage) y deduplica pedidos
+// concurrentes para la misma clave.
+function conCacheMedia(key, fetcher) {
+  const cache = obtenerCacheMedia();
+  if (key in cache) return Promise.resolve(cache[key]);
+  if (solicitudesEnCurso.has(key)) return solicitudesEnCurso.get(key);
+  const promesa = fetcher().then((valor) => {
+    cache[key] = valor;
+    persistirCacheMedia();
+    solicitudesEnCurso.delete(key);
+    return valor;
+  });
+  solicitudesEnCurso.set(key, promesa);
+  return promesa;
 }
 
 async function buscarFotoWiki(lang, nombreWiki) {
@@ -212,36 +235,29 @@ async function buscarFotoWiki(lang, nombreWiki) {
   }
 }
 
-async function fotoAutor(nombre) {
-  const cache = leerCacheMedia();
-  const key = `foto:${nombre}`;
-  if (key in cache) return cache[key];
-  const nombreWiki = nombre.trim().replace(/ /g, "_");
-  let resultado = await buscarFotoWiki("es", nombreWiki);
-  if (!resultado) resultado = await buscarFotoWiki("en", nombreWiki);
-  cache[key] = resultado;
-  guardarCacheMedia(cache);
-  return resultado;
+function fotoAutor(nombre) {
+  return conCacheMedia(`foto:${nombre}`, async () => {
+    const nombreWiki = nombre.trim().replace(/ /g, "_");
+    const [es, en] = await Promise.all([
+      buscarFotoWiki("es", nombreWiki),
+      buscarFotoWiki("en", nombreWiki),
+    ]);
+    return es || en;
+  });
 }
 
-async function portadaLibro(titulo, autor) {
-  const cache = leerCacheMedia();
-  const key = `portada:${titulo}|${autor}`;
-  if (key in cache) return cache[key];
-  let url = null;
-  try {
-    const res = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(titulo + " " + autor)}&limit=1`);
-    if (res.ok) {
+function portadaLibro(titulo, autor) {
+  return conCacheMedia(`portada:${titulo}|${autor}`, async () => {
+    try {
+      const res = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(titulo + " " + autor)}&limit=1`);
+      if (!res.ok) return null;
       const data = await res.json();
       const coverId = data.docs?.[0]?.cover_i;
-      url = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : null;
+      return coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : null;
+    } catch (error) {
+      return null;
     }
-  } catch (error) {
-    url = null;
-  }
-  cache[key] = url;
-  guardarCacheMedia(cache);
-  return url;
+  });
 }
 
 async function cargarMediaAutor(span, inner) {
@@ -279,7 +295,8 @@ async function cargarMediaAutor(span, inner) {
   }
 }
 
-function cargarMediaAutores(li, inner) {
+function cargarMediaAutores(li) {
+  const inner = li.querySelector(".period-panel-inner");
   const spans = li.querySelectorAll(".author-media:not([data-cargado])");
   spans.forEach((span) => {
     span.setAttribute("data-cargado", "1");
@@ -316,7 +333,7 @@ function crearPeriodo(periodo, indice) {
     toggle.setAttribute("aria-expanded", String(isOpen));
     inner.style.maxHeight = isOpen ? inner.scrollHeight + "px" : "0px";
     if (isOpen) {
-      cargarMediaAutores(li, inner);
+      cargarMediaAutores(li);
     }
   });
 
@@ -398,7 +415,10 @@ function cerrarLightbox() {
 function activarScrollReveal() {
   const items = document.querySelectorAll(".period");
   if (!("IntersectionObserver" in window)) {
-    items.forEach((el) => el.classList.add("in-view"));
+    items.forEach((el) => {
+      el.classList.add("in-view");
+      cargarMediaAutores(el);
+    });
     return;
   }
   const observer = new IntersectionObserver(
@@ -406,6 +426,9 @@ function activarScrollReveal() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("in-view");
+          // Precarga las fotos/portadas apenas la tarjeta entra en pantalla,
+          // para que ya esten listas (o en camino) cuando el usuario abra el panel.
+          cargarMediaAutores(entry.target);
           observer.unobserve(entry.target);
         }
       });
