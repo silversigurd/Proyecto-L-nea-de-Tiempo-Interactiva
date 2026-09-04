@@ -13,11 +13,11 @@ const periodos = [
         <li>Postclásico (900–1500 d.C.): expansión azteca e inca.</li>
       </ul>
       <h3>Cultura Maya</h3>
-      <p>Códices y calendario; obra referente <em>Popol-Vuh</em> (mitología y creación del hombre de maíz).</p>
+      <p>Códices y calendario; obra referente <em>Popol-Vuh</em> (mitología y creación del hombre de maíz).${autorMedia("Popol Vuh")}</p>
       <h3>Cultura Azteca (Náhuatl)</h3>
-      <p>Poesía filosófica sobre la muerte y el amor; obra clave <em>Huehuetlahtolli</em>.</p>
+      <p>Poesía filosófica sobre la muerte y el amor; obra clave <em>Huehuetlahtolli</em>.${autorMedia("Huehuetlahtolli")}</p>
       <h3>Cultura Inca (Quechua)</h3>
-      <p>Poesía lírica oral, cantos, religión; destaca el <em>Manuscrito de Huarochirí</em>.</p>
+      <p>Poesía lírica oral, cantos, religión; destaca el <em>Manuscrito de Huarochirí</em>.${autorMedia("Manuscrito de Huarochirí")}</p>
       <h3>Formatos y conservación</h3>
       <p>Mitos, leyendas, poemas épicos, crónicas, códices; gran parte destruida en la colonia por herejía, sobrevivió por oralidad y frailes transcriptores.</p>
     `,
@@ -35,10 +35,10 @@ const periodos = [
       <p>Racionalismo, reglas formales, carácter aristocrático, fin educativo.</p>
       <h3>Autores clave</h3>
       <ul>
-        <li>José Joaquín Fernández de Lizardi — <em>El Periquillo Sarniento</em>, primera novela de América.</li>
-        <li>Vicente López y Planes — Himno Argentino.</li>
-        <li>Esteban de Luca — Marcha Patriótica.</li>
-        <li>José Trinidad Reyes (Honduras).</li>
+        <li>José Joaquín Fernández de Lizardi — <em>El Periquillo Sarniento</em>, primera novela de América.${autorMedia("José Joaquín Fernández de Lizardi", "El Periquillo Sarniento")}</li>
+        <li>Vicente López y Planes — Himno Argentino.${autorMedia("Vicente López y Planes")}</li>
+        <li>Esteban de Luca — Marcha Patriótica.${autorMedia("Esteban de Luca")}</li>
+        <li>José Trinidad Reyes (Honduras).${autorMedia("José Trinidad Reyes")}</li>
       </ul>
     `,
   },
@@ -48,19 +48,50 @@ const periodos = [
     resumen: "Del Romanticismo al Modernismo: costumbrismo, realismo social y la explosión sensorial de Rubén Darío.",
     detalle: `
       <h3>Romanticismo</h3>
-      <p>El individuo en el centro, tono emocional y nostálgico; obra cumbre <em>María</em> de Jorge Isaacs (Colombia).</p>
+      <p>El individuo en el centro, tono emocional y nostálgico.</p>
+      <ul>
+        <li>Jorge Isaacs (Colombia) — obra cumbre <em>María</em>.${autorMedia("Jorge Isaacs", "María")}</li>
+      </ul>
       <h3>Literatura Gaucha vs. Gauchesca</h3>
       <p>Popular/oral (campesino mestizo) vs. escrita por intelectuales para crítica social.</p>
       <h3>Costumbrismo</h3>
-      <p>Retrato de la cotidianidad vía periodismo. Autores: Eugenio Díaz Castro (<em>Manuela</em>), "Jotabeche", Ricardo Palma (<em>Tradiciones Peruanas</em>), Manuel Payno, José María Vergara y Vergara.</p>
+      <p>Retrato de la cotidianidad vía periodismo.</p>
+      <ul>
+        <li>Eugenio Díaz Castro — <em>Manuela</em>.${autorMedia("Eugenio Díaz Castro", "Manuela")}</li>
+        <li>José Joaquín Vallejo "Jotabeche".${autorMedia("José Joaquín Vallejo")}</li>
+        <li>Ricardo Palma — <em>Tradiciones Peruanas</em>.${autorMedia("Ricardo Palma", "Tradiciones Peruanas")}</li>
+        <li>Manuel Payno.${autorMedia("Manuel Payno")}</li>
+        <li>José María Vergara y Vergara.${autorMedia("José María Vergara y Vergara")}</li>
+      </ul>
       <h3>Realismo</h3>
-      <p>Crítica social cruda, influencia de Zola. Autores: Clorinda Matto de Turner (<em>Aves sin nido</em>), Tomás Carrasquilla (<em>La Marquesa de Yolombó</em>), Lucio V. López (<em>La gran aldea</em>).</p>
+      <p>Crítica social cruda, influencia de Zola.</p>
+      <ul>
+        <li>Clorinda Matto de Turner — <em>Aves sin nido</em>.${autorMedia("Clorinda Matto de Turner", "Aves sin nido")}</li>
+        <li>Tomás Carrasquilla — <em>La Marquesa de Yolombó</em>.${autorMedia("Tomás Carrasquilla", "La Marquesa de Yolombó")}</li>
+        <li>Lucio V. López — <em>La gran aldea</em>.${autorMedia("Lucio V. López", "La gran aldea")}</li>
+      </ul>
       <h3>Premodernismo</h3>
-      <p>Transición, sinestesia; referente Julián del Casal.</p>
+      <p>Transición, sinestesia.</p>
+      <ul>
+        <li>Julián del Casal.${autorMedia("Julián del Casal")}</li>
+      </ul>
       <h3>Modernismo</h3>
-      <p>Musicalidad, sinestesia, símbolos exóticos. Autores: Rubén Darío (<em>Azul</em>, 1888), Leopoldo Lugones, Amado Nervo, Julio Herrera y Reissig, José Santos Chocano, Guillermo Valencia, Enrique Larreta.</p>
+      <p>Musicalidad, sinestesia, símbolos exóticos.</p>
+      <ul>
+        <li>Rubén Darío — <em>Azul</em> (1888).${autorMedia("Rubén Darío", "Azul")}</li>
+        <li>Leopoldo Lugones — <em>Las montañas de oro</em>.${autorMedia("Leopoldo Lugones", "Las montañas de oro")}</li>
+        <li>Amado Nervo — <em>Perlas negras</em>.${autorMedia("Amado Nervo", "Perlas negras")}</li>
+        <li>Julio Herrera y Reissig — <em>Los éxtasis de la montaña</em>.${autorMedia("Julio Herrera y Reissig", "Los éxtasis de la montaña")}</li>
+        <li>José Santos Chocano — <em>Alma América</em>.${autorMedia("José Santos Chocano", "Alma América")}</li>
+        <li>Guillermo Valencia — <em>Ritos</em>.${autorMedia("Guillermo Valencia", "Ritos")}</li>
+        <li>Enrique Larreta — <em>La gloria de don Ramiro</em>.${autorMedia("Enrique Larreta", "La gloria de don Ramiro")}</li>
+      </ul>
       <h3>Realismo Finisecular (1890–1910)</h3>
-      <p>Literatura local, dialectos, sátira. Autores: Tomás Carrasquilla (<em>Frutos de mi tierra</em>), Eduardo Acevedo Díaz (<em>Ismael</em>), Vicente Pérez Rosales.</p>
+      <p>Literatura local, dialectos, sátira.</p>
+      <ul>
+        <li>Eduardo Acevedo Díaz — <em>Ismael</em>.${autorMedia("Eduardo Acevedo Díaz", "Ismael")}</li>
+        <li>Vicente Pérez Rosales — <em>Recuerdos del pasado</em>.${autorMedia("Vicente Pérez Rosales", "Recuerdos del pasado")}</li>
+      </ul>
     `,
   },
   {
@@ -73,11 +104,23 @@ const periodos = [
       <h3>Los "Ismos"</h3>
       <p>Futurismo (1909), Surrealismo (1924), Creacionismo, Estridentismo (1921).</p>
       <h3>Vanguardistas clave</h3>
-      <p>Vicente Huidobro, César Vallejo (<em>Trilce</em>, 1922), Manuel Maples Arce, Jorge Luis Borges (Ultraísmo).</p>
+      <ul>
+        <li>Vicente Huidobro.${autorMedia("Vicente Huidobro")}</li>
+        <li>César Vallejo — <em>Trilce</em> (1922).${autorMedia("César Vallejo", "Trilce")}</li>
+        <li>Manuel Maples Arce.${autorMedia("Manuel Maples Arce")}</li>
+        <li>Jorge Luis Borges (Ultraísmo).${autorMedia("Jorge Luis Borges")}</li>
+      </ul>
       <h3>La Novela de la Tierra (años 20)</h3>
-      <p>La naturaleza como fuerza primitiva. Obras: <em>La vorágine</em> (1924) de José Eustasio Rivera, <em>Doña Bárbara</em> (1929) de Rómulo Gallegos.</p>
+      <p>La naturaleza como fuerza primitiva.</p>
+      <ul>
+        <li>José Eustasio Rivera — <em>La vorágine</em> (1924).${autorMedia("José Eustasio Rivera", "La vorágine")}</li>
+        <li>Rómulo Gallegos — <em>Doña Bárbara</em> (1929).${autorMedia("Rómulo Gallegos", "Doña Bárbara")}</li>
+      </ul>
       <h3>La Vanguardia Urbana (años 20)</h3>
-      <p>Crudeza de la ciudad. Grupo de Boedo y Florida; Roberto Arlt (<em>El juguete rabioso</em>, 1926).</p>
+      <p>Crudeza de la ciudad. Grupo de Boedo y Florida.</p>
+      <ul>
+        <li>Roberto Arlt — <em>El juguete rabioso</em> (1926).${autorMedia("Roberto Arlt", "El juguete rabioso")}</li>
+      </ul>
     `,
   },
   {
@@ -90,13 +133,19 @@ const periodos = [
       <h3>Impacto editorial</h3>
       <p>Editorial Seix Barral (Barcelona); saltos de tiempo, multiplicidad de voces, Realismo Mágico.</p>
       <h3>Premios Nobel</h3>
-      <p>Gabriela Mistral (1945), Miguel Ángel Asturias (1967), Pablo Neruda (1971), Gabriel García Márquez (1982), Octavio Paz (1990), Mario Vargas Llosa (2010).</p>
+      <ul>
+        <li>Gabriela Mistral (1945).${autorMedia("Gabriela Mistral")}</li>
+        <li>Miguel Ángel Asturias (1967).${autorMedia("Miguel Ángel Asturias")}</li>
+        <li>Pablo Neruda (1971).${autorMedia("Pablo Neruda")}</li>
+        <li>Octavio Paz (1990).${autorMedia("Octavio Paz")}</li>
+      </ul>
+      <p>Gabriel García Márquez (1982) y Mario Vargas Llosa (2010) también son Nobel — ver Cuatro Grandes debajo.</p>
       <h3>Los Cuatro Grandes del Boom</h3>
       <ul>
-        <li>Gabriel García Márquez (Colombia): <em>Cien años de soledad</em> (1967).</li>
-        <li>Julio Cortázar (Argentina): <em>Rayuela</em> (1963).</li>
-        <li>Mario Vargas Llosa (Perú): <em>La ciudad y los perros</em> (1963).</li>
-        <li>Carlos Fuentes (México): <em>La muerte de Artemio Cruz</em> (1962).</li>
+        <li>Gabriel García Márquez (Colombia): <em>Cien años de soledad</em> (1967).${autorMedia("Gabriel García Márquez", "Cien años de soledad")}</li>
+        <li>Julio Cortázar (Argentina): <em>Rayuela</em> (1963).${autorMedia("Julio Cortázar", "Rayuela")}</li>
+        <li>Mario Vargas Llosa (Perú): <em>La ciudad y los perros</em> (1963).${autorMedia("Mario Vargas Llosa", "La ciudad y los perros")}</li>
+        <li>Carlos Fuentes (México): <em>La muerte de Artemio Cruz</em> (1962).${autorMedia("Carlos Fuentes", "La muerte de Artemio Cruz")}</li>
       </ul>
     `,
   },
@@ -106,16 +155,137 @@ const periodos = [
     resumen: "El Post-Boom da voz a mujeres y minorías; la era digital trae narcotráfico, migración y el descubrimiento por TikTok.",
     detalle: `
       <h3>Post-Boom</h3>
-      <p>Rompe el monopolio del Boom, da voz a mujeres y minorías. Obras: <em>Arráncame la vida</em> (Ángeles Mastretta), <em>La noche de Tlatelolco</em> (Elena Poniatowska).</p>
+      <p>Rompe el monopolio del Boom, da voz a mujeres y minorías.</p>
+      <ul>
+        <li>Ángeles Mastretta — <em>Arráncame la vida</em>.${autorMedia("Ángeles Mastretta", "Arráncame la vida")}</li>
+        <li>Elena Poniatowska — <em>La noche de Tlatelolco</em>.${autorMedia("Elena Poniatowska", "La noche de Tlatelolco")}</li>
+      </ul>
       <h3>Era Digital</h3>
       <p>Internet, narcotráfico, migración; estilo corto y directo tipo chat, mezcla de crónicas, memes y cultura pop; personajes rotos/reales.</p>
       <h3>Autores contemporáneos</h3>
-      <p>Mariana Enríquez (<em>Las cosas que perdimos en el fuego</em>), Piedad Bonnett (<em>Lo que no tiene nombre</em>), Guillermo Arriaga (<em>Salvar el fuego</em>), Gilmer Mesa (<em>La cuadra</em>).</p>
+      <ul>
+        <li>Mariana Enríquez — <em>Las cosas que perdimos en el fuego</em>.${autorMedia("Mariana Enríquez", "Las cosas que perdimos en el fuego")}</li>
+        <li>Piedad Bonnett — <em>Lo que no tiene nombre</em>.${autorMedia("Piedad Bonnett", "Lo que no tiene nombre")}</li>
+        <li>Guillermo Arriaga — <em>Salvar el fuego</em>.${autorMedia("Guillermo Arriaga", "Salvar el fuego")}</li>
+        <li>Gilmer Mesa — <em>La cuadra</em>.${autorMedia("Gilmer Mesa", "La cuadra")}</li>
+      </ul>
       <h3>Consumo literario de hoy</h3>
       <p>De libros académicos a descubrir novelas por TikTok/WhatsApp; de "leer para soñar con Macondo" a "leer para entendernos y hacer resistencia".</p>
     `,
   },
 ];
+
+function autorMedia(nombre, obra) {
+  const obraAttr = obra ? ` data-obra="${obra.replace(/"/g, "&quot;")}"` : "";
+  return `<span class="author-media" data-nombre="${nombre.replace(/"/g, "&quot;")}"${obraAttr}></span>`;
+}
+
+const MEDIA_CACHE_KEY = "autoresMediaCache_v1";
+
+function leerCacheMedia() {
+  try {
+    return JSON.parse(localStorage.getItem(MEDIA_CACHE_KEY)) || {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function guardarCacheMedia(cache) {
+  try {
+    localStorage.setItem(MEDIA_CACHE_KEY, JSON.stringify(cache));
+  } catch (error) {
+    // localStorage puede no estar disponible (modo privado, cuota llena); ignorar.
+  }
+}
+
+async function buscarFotoWiki(lang, nombreWiki) {
+  try {
+    const res = await fetch(`https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(nombreWiki)}`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    const thumb = data.thumbnail?.source || null;
+    const full = data.originalimage?.source || thumb;
+    if (!thumb && !full) return null;
+    return { thumb: thumb || full, full: full || thumb };
+  } catch (error) {
+    return null;
+  }
+}
+
+async function fotoAutor(nombre) {
+  const cache = leerCacheMedia();
+  const key = `foto:${nombre}`;
+  if (key in cache) return cache[key];
+  const nombreWiki = nombre.trim().replace(/ /g, "_");
+  let resultado = await buscarFotoWiki("es", nombreWiki);
+  if (!resultado) resultado = await buscarFotoWiki("en", nombreWiki);
+  cache[key] = resultado;
+  guardarCacheMedia(cache);
+  return resultado;
+}
+
+async function portadaLibro(titulo, autor) {
+  const cache = leerCacheMedia();
+  const key = `portada:${titulo}|${autor}`;
+  if (key in cache) return cache[key];
+  let url = null;
+  try {
+    const res = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(titulo + " " + autor)}&limit=1`);
+    if (res.ok) {
+      const data = await res.json();
+      const coverId = data.docs?.[0]?.cover_i;
+      url = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : null;
+    }
+  } catch (error) {
+    url = null;
+  }
+  cache[key] = url;
+  guardarCacheMedia(cache);
+  return url;
+}
+
+async function cargarMediaAutor(span, inner) {
+  const nombre = span.dataset.nombre;
+  const obra = span.dataset.obra;
+  const [foto, portada] = await Promise.all([
+    fotoAutor(nombre),
+    obra ? portadaLibro(obra, nombre) : Promise.resolve(null),
+  ]);
+
+  if (foto) {
+    const img = document.createElement("img");
+    img.className = "author-photo";
+    img.src = foto.thumb;
+    img.dataset.full = foto.full;
+    img.alt = `Imagen de ${nombre}`;
+    img.loading = "lazy";
+    img.tabIndex = 0;
+    span.appendChild(img);
+  }
+  if (portada) {
+    const img = document.createElement("img");
+    img.className = "author-cover";
+    img.src = portada;
+    img.dataset.full = portada;
+    img.alt = `Portada de ${obra}`;
+    img.loading = "lazy";
+    img.tabIndex = 0;
+    span.appendChild(img);
+  }
+  if ((foto || portada) && inner.closest(".period").classList.contains("open")) {
+    requestAnimationFrame(() => {
+      inner.style.maxHeight = inner.scrollHeight + "px";
+    });
+  }
+}
+
+function cargarMediaAutores(li, inner) {
+  const spans = li.querySelectorAll(".author-media:not([data-cargado])");
+  spans.forEach((span) => {
+    span.setAttribute("data-cargado", "1");
+    cargarMediaAutor(span, inner);
+  });
+}
 
 function crearPeriodo(periodo, indice) {
   const li = document.createElement("li");
@@ -145,6 +315,9 @@ function crearPeriodo(periodo, indice) {
     const isOpen = li.classList.toggle("open");
     toggle.setAttribute("aria-expanded", String(isOpen));
     inner.style.maxHeight = isOpen ? inner.scrollHeight + "px" : "0px";
+    if (isOpen) {
+      cargarMediaAutores(li, inner);
+    }
   });
 
   return { li, inner };
@@ -172,6 +345,56 @@ function render() {
   });
 }
 
+function crearLightbox() {
+  const overlay = document.createElement("div");
+  overlay.className = "media-lightbox";
+  overlay.innerHTML = `
+    <button type="button" class="media-lightbox-close" aria-label="Cerrar imagen">&times;</button>
+    <img class="media-lightbox-img" alt="">
+  `;
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay || event.target.closest(".media-lightbox-close")) {
+      cerrarLightbox();
+    }
+  });
+  document.body.appendChild(overlay);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") cerrarLightbox();
+  });
+
+  document.addEventListener("click", (event) => {
+    const img = event.target.closest(".author-photo, .author-cover");
+    if (img) {
+      abrirLightbox(img.dataset.full || img.src, img.alt);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const img = event.target.closest(".author-photo, .author-cover");
+    if (img) {
+      event.preventDefault();
+      abrirLightbox(img.dataset.full || img.src, img.alt);
+    }
+  });
+
+  return overlay;
+}
+
+function abrirLightbox(src, alt) {
+  const overlay = document.querySelector(".media-lightbox");
+  const img = overlay.querySelector(".media-lightbox-img");
+  img.src = src;
+  img.alt = alt;
+  overlay.classList.add("open");
+}
+
+function cerrarLightbox() {
+  const overlay = document.querySelector(".media-lightbox");
+  overlay.classList.remove("open");
+}
+
 function activarScrollReveal() {
   const items = document.querySelectorAll(".period");
   if (!("IntersectionObserver" in window)) {
@@ -194,3 +417,4 @@ function activarScrollReveal() {
 
 render();
 activarScrollReveal();
+crearLightbox();

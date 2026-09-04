@@ -284,6 +284,106 @@ main {
   margin: 0 0 0.6rem;
 }
 
+.author-media {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.author-photo,
+.author-cover {
+  display: inline-block;
+  opacity: 0;
+  animation: media-reveal 0.4s ease forwards;
+  border: 2px solid var(--card-bg);
+  box-shadow: 0 1px 4px rgba(50, 40, 35, 0.18);
+  object-fit: cover;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.author-photo:hover,
+.author-cover:hover,
+.author-photo:focus-visible,
+.author-cover:focus-visible {
+  transform: scale(1.15);
+  box-shadow: 0 4px 10px rgba(50, 40, 35, 0.28);
+}
+
+.author-photo:focus-visible,
+.author-cover:focus-visible {
+  outline: 2px solid var(--ink-soft);
+  outline-offset: 2px;
+}
+
+.author-photo {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+}
+
+.author-cover {
+  width: 1.9rem;
+  height: 2.7rem;
+  border-radius: 4px;
+}
+
+@keyframes media-reveal {
+  to { opacity: 1; }
+}
+
+@media (max-width: 30rem) {
+  .author-photo { width: 1.9rem; height: 1.9rem; }
+  .author-cover { width: 1.6rem; height: 2.3rem; }
+}
+
+.media-lightbox {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(51, 48, 46, 0.82);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 100;
+}
+
+.media-lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.media-lightbox-img {
+  max-width: min(90vw, 26rem);
+  max-height: 85vh;
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.media-lightbox-close {
+  all: unset;
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  cursor: pointer;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  padding: 0.3rem 0.6rem;
+}
+
+.media-lightbox-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
 /* color rotation */
 .period.color-1 { --dot: var(--rose); --ink-color: var(--rose-ink); --panel-bg: var(--rose); --card-tint: var(--rose-soft); }
 .period.color-2 { --dot: var(--lavender-ink); --ink-color: var(--lavender-ink); --panel-bg: var(--lavender); --card-tint: var(--lavender-soft); }
