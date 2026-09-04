@@ -68,7 +68,7 @@ const periodos = [
       <ul>
         <li>Clorinda Matto de Turner — <em>Aves sin nido</em>.${autorMedia("Clorinda Matto de Turner", "Aves sin nido")}</li>
         <li>Tomás Carrasquilla — <em>La Marquesa de Yolombó</em>.${autorMedia("Tomás Carrasquilla", "La Marquesa de Yolombó")}</li>
-        <li>Lucio V. López — <em>La gran aldea</em>.${autorMedia("Lucio V. López", "La gran aldea")}</li>
+        <li>Lucio V. López — <em>La gran aldea</em>.${autorMedia("Lucio Vicente López", "La gran aldea")}</li>
       </ul>
       <h3>Premodernismo</h3>
       <p>Transición, sinestesia.</p>
@@ -180,7 +180,7 @@ function autorMedia(nombre, obra) {
   return `<span class="author-media" data-nombre="${nombre.replace(/"/g, "&quot;")}"${obraAttr}></span>`;
 }
 
-const MEDIA_CACHE_KEY = "autoresMediaCache_v1";
+const MEDIA_CACHE_KEY = "autoresMediaCache_v2";
 
 let mediaCache = null;
 const solicitudesEnCurso = new Map();
@@ -249,11 +249,18 @@ function fotoAutor(nombre) {
 function portadaLibro(titulo, autor) {
   return conCacheMedia(`portada:${titulo}|${autor}`, async () => {
     try {
-      const res = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(titulo + " " + autor)}&limit=1`);
+      const res = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(titulo + " " + autor)}&limit=5`);
       if (!res.ok) return null;
       const data = await res.json();
-      const coverId = data.docs?.[0]?.cover_i;
-      return coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : null;
+      // El primer resultado no siempre trae portada (ediciones sin escanear), y
+      // algunos cover_i solo existen en un zip de Internet Archive que Open
+      // Library proxea al vuelo y a veces falla (502) — se guardan varios
+      // candidatos para poder probar el siguiente si el primero no carga.
+      const candidatos = (data.docs || [])
+        .filter((doc) => doc.cover_i)
+        .slice(0, 3)
+        .map((doc) => `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`);
+      return candidatos.length ? candidatos : null;
     } catch (error) {
       return null;
     }
@@ -279,20 +286,38 @@ async function cargarMediaAutor(span, inner) {
     span.appendChild(img);
   }
   if (portada) {
+    const [primera, ...resto] = portada;
     const img = document.createElement("img");
     img.className = "author-cover";
-    img.src = portada;
-    img.dataset.full = portada;
+    img.src = primera;
+    img.dataset.full = primera;
     img.alt = `Portada de ${obra}`;
     img.loading = "lazy";
     img.tabIndex = 0;
+    let candidatosRestantes = resto;
+    img.addEventListener("error", function reintentarPortada() {
+      if (candidatosRestantes.length === 0) {
+        img.remove();
+        recalcularAltura(inner);
+        return;
+      }
+      const [siguiente, ...restantes] = candidatosRestantes;
+      candidatosRestantes = restantes;
+      img.src = siguiente;
+      img.dataset.full = siguiente;
+    });
     span.appendChild(img);
   }
-  if ((foto || portada) && inner.closest(".period").classList.contains("open")) {
-    requestAnimationFrame(() => {
-      inner.style.maxHeight = inner.scrollHeight + "px";
-    });
+  if (foto || portada) {
+    recalcularAltura(inner);
   }
+}
+
+function recalcularAltura(inner) {
+  if (!inner.closest(".period").classList.contains("open")) return;
+  requestAnimationFrame(() => {
+    inner.style.maxHeight = inner.scrollHeight + "px";
+  });
 }
 
 function cargarMediaAutores(li) {
